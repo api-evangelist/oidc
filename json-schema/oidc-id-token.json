@@ -1,0 +1,194 @@
+{
+  "$id": "oidc-id-token.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OpenID Connect ID Token Claims",
+  "description": "Schema describing the claims contained in an OpenID Connect ID Token as defined in the OIDC Core 1.0 specification. The ID Token is a JSON Web Token (JWT) that contains claims about the authentication event and the end-user. It is the primary artifact that distinguishes OIDC from plain OAuth 2.0.",
+  "type": "object",
+  "required": [
+    "iss",
+    "sub",
+    "aud",
+    "exp",
+    "iat"
+  ],
+  "properties": {
+    "iss": {
+      "type": "string",
+      "format": "uri",
+      "description": "Issuer Identifier for the issuer of the response. Must be the HTTPS URL of the OpenID Provider."
+    },
+    "sub": {
+      "type": "string",
+      "description": "Subject Identifier. A locally unique and never reassigned identifier for the end-user within the issuer, intended to be consumed by the client.",
+      "maxLength": 255
+    },
+    "aud": {
+      "description": "Audience(s) that this ID Token is intended for. Must contain the OAuth 2.0 client_id of the relying party.",
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "exp": {
+      "type": "integer",
+      "description": "Expiration time on or after which the ID Token must not be accepted for processing. Represented as seconds since the Unix epoch."
+    },
+    "iat": {
+      "type": "integer",
+      "description": "Time at which the JWT was issued. Represented as seconds since the Unix epoch."
+    },
+    "auth_time": {
+      "type": "integer",
+      "description": "Time when the end-user authentication occurred. Required when a max_age request is made or when auth_time is requested as an essential claim."
+    },
+    "nonce": {
+      "type": "string",
+      "description": "A string value used to associate a client session with an ID Token and to mitigate replay attacks. The value is passed through unmodified from the authentication request."
+    },
+    "acr": {
+      "type": "string",
+      "description": "Authentication Context Class Reference. A string specifying the authentication context class that the authentication performed satisfied."
+    },
+    "amr": {
+      "type": "array",
+      "description": "Authentication Methods References. JSON array of strings that are identifiers for authentication methods used in the authentication.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "azp": {
+      "type": "string",
+      "description": "Authorized Party. The client_id of the party to which the ID Token was issued. Required when the ID Token has a single audience value that differs from the authorized party."
+    },
+    "at_hash": {
+      "type": "string",
+      "description": "Access Token hash value. Provides validation that the access token is tied to the ID Token."
+    },
+    "c_hash": {
+      "type": "string",
+      "description": "Code hash value. Provides validation that the authorization code is tied to the ID Token."
+    },
+    "s_hash": {
+      "type": "string",
+      "description": "State hash value. Provides validation that the state parameter is tied to the ID Token."
+    },
+    "name": {
+      "type": "string",
+      "description": "Full name of the end-user in displayable form."
+    },
+    "given_name": {
+      "type": "string",
+      "description": "Given name(s) or first name(s) of the end-user."
+    },
+    "family_name": {
+      "type": "string",
+      "description": "Surname(s) or last name(s) of the end-user."
+    },
+    "middle_name": {
+      "type": "string",
+      "description": "Middle name(s) of the end-user."
+    },
+    "nickname": {
+      "type": "string",
+      "description": "Casual name of the end-user."
+    },
+    "preferred_username": {
+      "type": "string",
+      "description": "Shorthand name by which the end-user wishes to be referred to."
+    },
+    "profile": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of the end-user's profile page."
+    },
+    "picture": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of the end-user's profile picture."
+    },
+    "website": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of the end-user's web page or blog."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "End-user's preferred email address."
+    },
+    "email_verified": {
+      "type": "boolean",
+      "description": "Whether the end-user's email address has been verified."
+    },
+    "gender": {
+      "type": "string",
+      "description": "End-user's gender."
+    },
+    "birthdate": {
+      "type": "string",
+      "description": "End-user's birthday in ISO 8601 YYYY-MM-DD format. The year may be 0000 to indicate it was omitted.",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "zoneinfo": {
+      "type": "string",
+      "description": "End-user's time zone from the IANA Time Zone Database.",
+      "examples": ["America/Los_Angeles", "Europe/Paris"]
+    },
+    "locale": {
+      "type": "string",
+      "description": "End-user's locale as a BCP 47 language tag.",
+      "examples": ["en-US", "fr-FR"]
+    },
+    "phone_number": {
+      "type": "string",
+      "description": "End-user's preferred telephone number in E.164 format.",
+      "examples": ["+1-555-555-1234"]
+    },
+    "phone_number_verified": {
+      "type": "boolean",
+      "description": "Whether the end-user's phone number has been verified."
+    },
+    "address": {
+      "type": "object",
+      "description": "End-user's preferred postal address.",
+      "properties": {
+        "formatted": {
+          "type": "string",
+          "description": "Full mailing address, formatted for display."
+        },
+        "street_address": {
+          "type": "string",
+          "description": "Full street address, which may include house number, street name, and PO box."
+        },
+        "locality": {
+          "type": "string",
+          "description": "City or locality."
+        },
+        "region": {
+          "type": "string",
+          "description": "State, province, prefecture, or region."
+        },
+        "postal_code": {
+          "type": "string",
+          "description": "Zip code or postal code."
+        },
+        "country": {
+          "type": "string",
+          "description": "Country name."
+        }
+      }
+    },
+    "updated_at": {
+      "type": "integer",
+      "description": "Time the end-user's information was last updated. Represented as seconds since the Unix epoch."
+    }
+  },
+  "additionalProperties": true
+}

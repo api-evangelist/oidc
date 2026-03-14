@@ -1,0 +1,217 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "oidc": "https://openid.net/specs/openid-connect-core-1_0.html#",
+    "oauth": "https://datatracker.ietf.org/doc/html/rfc6749#",
+    "jwt": "https://datatracker.ietf.org/doc/html/rfc7519#",
+    "jwk": "https://datatracker.ietf.org/doc/html/rfc7517#",
+    "schema": "https://schema.org/",
+    "foaf": "http://xmlns.com/foaf/0.1/",
+    "vcard": "http://www.w3.org/2006/vcard/ns#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "OpenIDProvider": {
+      "@id": "oidc:OpenIDProvider",
+      "@type": "@id"
+    },
+    "RelyingParty": {
+      "@id": "oidc:RelyingParty",
+      "@type": "@id"
+    },
+    "IDToken": {
+      "@id": "oidc:IDToken",
+      "@type": "@id"
+    },
+
+    "issuer": {
+      "@id": "oidc:issuer",
+      "@type": "@id"
+    },
+    "subject": {
+      "@id": "oidc:sub",
+      "@type": "xsd:string"
+    },
+    "audience": {
+      "@id": "oidc:aud",
+      "@type": "xsd:string"
+    },
+    "expirationTime": {
+      "@id": "jwt:exp",
+      "@type": "xsd:integer"
+    },
+    "issuedAt": {
+      "@id": "jwt:iat",
+      "@type": "xsd:integer"
+    },
+    "authTime": {
+      "@id": "oidc:auth_time",
+      "@type": "xsd:integer"
+    },
+    "nonce": {
+      "@id": "oidc:nonce",
+      "@type": "xsd:string"
+    },
+    "authContextClassRef": {
+      "@id": "oidc:acr",
+      "@type": "xsd:string"
+    },
+    "authMethodsRef": {
+      "@id": "oidc:amr",
+      "@container": "@set"
+    },
+    "authorizedParty": {
+      "@id": "oidc:azp",
+      "@type": "xsd:string"
+    },
+
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "givenName": {
+      "@id": "schema:givenName",
+      "@type": "xsd:string"
+    },
+    "familyName": {
+      "@id": "schema:familyName",
+      "@type": "xsd:string"
+    },
+    "middleName": {
+      "@id": "schema:additionalName",
+      "@type": "xsd:string"
+    },
+    "nickname": {
+      "@id": "foaf:nick",
+      "@type": "xsd:string"
+    },
+    "preferredUsername": {
+      "@id": "oidc:preferred_username",
+      "@type": "xsd:string"
+    },
+    "profile": {
+      "@id": "schema:url",
+      "@type": "@id"
+    },
+    "picture": {
+      "@id": "schema:image",
+      "@type": "@id"
+    },
+    "website": {
+      "@id": "foaf:homepage",
+      "@type": "@id"
+    },
+    "email": {
+      "@id": "schema:email",
+      "@type": "xsd:string"
+    },
+    "emailVerified": {
+      "@id": "oidc:email_verified",
+      "@type": "xsd:boolean"
+    },
+    "gender": {
+      "@id": "schema:gender",
+      "@type": "xsd:string"
+    },
+    "birthdate": {
+      "@id": "schema:birthDate",
+      "@type": "xsd:date"
+    },
+    "zoneinfo": {
+      "@id": "oidc:zoneinfo",
+      "@type": "xsd:string"
+    },
+    "locale": {
+      "@id": "oidc:locale",
+      "@type": "xsd:string"
+    },
+    "phoneNumber": {
+      "@id": "schema:telephone",
+      "@type": "xsd:string"
+    },
+    "phoneNumberVerified": {
+      "@id": "oidc:phone_number_verified",
+      "@type": "xsd:boolean"
+    },
+    "address": {
+      "@id": "schema:address",
+      "@type": "schema:PostalAddress"
+    },
+    "streetAddress": {
+      "@id": "schema:streetAddress",
+      "@type": "xsd:string"
+    },
+    "locality": {
+      "@id": "schema:addressLocality",
+      "@type": "xsd:string"
+    },
+    "region": {
+      "@id": "schema:addressRegion",
+      "@type": "xsd:string"
+    },
+    "postalCode": {
+      "@id": "schema:postalCode",
+      "@type": "xsd:string"
+    },
+    "country": {
+      "@id": "schema:addressCountry",
+      "@type": "xsd:string"
+    },
+
+    "authorizationEndpoint": {
+      "@id": "oidc:authorization_endpoint",
+      "@type": "@id"
+    },
+    "tokenEndpoint": {
+      "@id": "oidc:token_endpoint",
+      "@type": "@id"
+    },
+    "userinfoEndpoint": {
+      "@id": "oidc:userinfo_endpoint",
+      "@type": "@id"
+    },
+    "jwksUri": {
+      "@id": "oidc:jwks_uri",
+      "@type": "@id"
+    },
+    "registrationEndpoint": {
+      "@id": "oidc:registration_endpoint",
+      "@type": "@id"
+    },
+    "endSessionEndpoint": {
+      "@id": "oidc:end_session_endpoint",
+      "@type": "@id"
+    },
+    "scopesSupported": {
+      "@id": "oidc:scopes_supported",
+      "@container": "@set"
+    },
+    "responseTypesSupported": {
+      "@id": "oidc:response_types_supported",
+      "@container": "@set"
+    },
+    "grantTypesSupported": {
+      "@id": "oidc:grant_types_supported",
+      "@container": "@set"
+    },
+    "subjectTypesSupported": {
+      "@id": "oidc:subject_types_supported",
+      "@container": "@set"
+    },
+    "idTokenSigningAlgValuesSupported": {
+      "@id": "oidc:id_token_signing_alg_values_supported",
+      "@container": "@set"
+    },
+    "claimsSupported": {
+      "@id": "oidc:claims_supported",
+      "@container": "@set"
+    },
+    "tokenEndpointAuthMethodsSupported": {
+      "@id": "oidc:token_endpoint_auth_methods_supported",
+      "@container": "@set"
+    },
+    "codeChallengeMethodsSupported": {
+      "@id": "oidc:code_challenge_methods_supported",
+      "@container": "@set"
+    }
+  }
+}

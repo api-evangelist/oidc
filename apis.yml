@@ -1,11 +1,36 @@
 name: OIDC
-description: OIDC is a technology or concept used in computing and information technology
-  to address specific technical challenges. It provides capabilities that help practitioners
-  build, manage, or improve systems and processes in their domain.
-url: null
+description: >-
+  OpenID Connect (OIDC) is an identity layer built on top of OAuth 2.0 that
+  enables clients to verify the identity of end-users based on authentication
+  performed by an authorization server. It provides a standardized way to
+  obtain basic profile information about users through RESTful endpoints
+  including discovery, authorization, token, userinfo, and JWKS.
+url: https://openid.net/developers/specs/
 tags:
 - OIDC
+- OpenID Connect
+- Authentication
+- Identity
+- OAuth
+- JWT
 created: '2025'
 modified: '2025'
-apis: []
+apis:
+- name: OpenID Connect API
+  description: >-
+    Core OpenID Connect API endpoints for authentication and identity,
+    including discovery, authorization, token exchange, user information
+    retrieval, key set publishing, and session management.
+  humanURL: https://openid.net/specs/openid-connect-core-1_0.html
+  properties:
+  - type: x-openapi
+    url: openapi/oidc.yml
+  - type: x-json-schema
+    url: json-schema/oidc-discovery.json
+  - type: x-json-schema
+    url: json-schema/oidc-id-token.json
+  - type: x-json-schema
+    url: json-schema/oidc-userinfo-response.json
+  - type: x-json-ld-context
+    url: json-ld/oidc-context.json
 common: []

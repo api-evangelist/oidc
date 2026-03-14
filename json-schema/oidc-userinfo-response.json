@@ -1,0 +1,128 @@
+{
+  "$id": "oidc-userinfo-response.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OpenID Connect UserInfo Response",
+  "description": "Schema describing the response from the OpenID Connect UserInfo endpoint as defined in OIDC Core 1.0. The UserInfo endpoint returns claims about the authenticated end-user. The claims returned depend on the scopes requested and granted during the authorization flow (profile, email, address, phone).",
+  "type": "object",
+  "required": [
+    "sub"
+  ],
+  "properties": {
+    "sub": {
+      "type": "string",
+      "description": "Subject Identifier. A locally unique and never reassigned identifier for the end-user at the issuer. This is the only required claim in the UserInfo response.",
+      "maxLength": 255
+    },
+    "name": {
+      "type": "string",
+      "description": "Full name of the end-user in displayable form, including all name parts and possibly titles and suffixes. Requires 'profile' scope."
+    },
+    "given_name": {
+      "type": "string",
+      "description": "Given name(s) or first name(s) of the end-user. Requires 'profile' scope."
+    },
+    "family_name": {
+      "type": "string",
+      "description": "Surname(s) or last name(s) of the end-user. Requires 'profile' scope."
+    },
+    "middle_name": {
+      "type": "string",
+      "description": "Middle name(s) of the end-user. Requires 'profile' scope."
+    },
+    "nickname": {
+      "type": "string",
+      "description": "Casual name of the end-user that may or may not be the same as the given_name. Requires 'profile' scope."
+    },
+    "preferred_username": {
+      "type": "string",
+      "description": "Shorthand name by which the end-user wishes to be referred to at the relying party. Requires 'profile' scope."
+    },
+    "profile": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of the end-user's profile page. Requires 'profile' scope."
+    },
+    "picture": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of the end-user's profile picture. This URL must refer to an image file rather than a web page containing an image. Requires 'profile' scope."
+    },
+    "website": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of the end-user's web page or blog. Requires 'profile' scope."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "End-user's preferred email address. Its value must conform to RFC 5322 addr-spec syntax. Requires 'email' scope."
+    },
+    "email_verified": {
+      "type": "boolean",
+      "description": "Whether the end-user's email address has been verified by the provider. Requires 'email' scope."
+    },
+    "gender": {
+      "type": "string",
+      "description": "End-user's gender. Values defined by the specification include 'female' and 'male', but other values may be used. Requires 'profile' scope."
+    },
+    "birthdate": {
+      "type": "string",
+      "description": "End-user's birthday in ISO 8601 YYYY-MM-DD format. A year value of 0000 indicates the year was omitted. Requires 'profile' scope.",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "zoneinfo": {
+      "type": "string",
+      "description": "End-user's time zone as a string from the IANA Time Zone Database. Requires 'profile' scope.",
+      "examples": ["America/Los_Angeles", "Europe/Paris"]
+    },
+    "locale": {
+      "type": "string",
+      "description": "End-user's locale represented as a BCP 47 language tag. Typically an ISO 639-1 language code and an ISO 3166-1 country code. Requires 'profile' scope.",
+      "examples": ["en-US", "fr-FR"]
+    },
+    "phone_number": {
+      "type": "string",
+      "description": "End-user's preferred telephone number in E.164 format. Requires 'phone' scope.",
+      "examples": ["+1-555-555-1234"]
+    },
+    "phone_number_verified": {
+      "type": "boolean",
+      "description": "Whether the end-user's phone number has been verified by the provider. Requires 'phone' scope."
+    },
+    "address": {
+      "type": "object",
+      "description": "End-user's preferred postal address. Requires 'address' scope.",
+      "properties": {
+        "formatted": {
+          "type": "string",
+          "description": "Full mailing address formatted for display or use on a mailing label."
+        },
+        "street_address": {
+          "type": "string",
+          "description": "Full street address component, which may include house number, street name, PO box, and multi-line information."
+        },
+        "locality": {
+          "type": "string",
+          "description": "City or locality component."
+        },
+        "region": {
+          "type": "string",
+          "description": "State, province, prefecture, or region component."
+        },
+        "postal_code": {
+          "type": "string",
+          "description": "Zip code or postal code component."
+        },
+        "country": {
+          "type": "string",
+          "description": "Country name component."
+        }
+      }
+    },
+    "updated_at": {
+      "type": "integer",
+      "description": "Time the end-user's information was last updated. Represented as the number of seconds since the Unix epoch (1970-01-01T00:00:00Z)."
+    }
+  },
+  "additionalProperties": true
+}

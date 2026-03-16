@@ -1,3 +1,4 @@
+aid: oidc
 name: OIDC
 description: >-
   OpenID Connect (OIDC) is an identity layer built on top of OAuth 2.0 that
@@ -5,32 +6,42 @@ description: >-
   performed by an authorization server. It provides a standardized way to
   obtain basic profile information about users through RESTful endpoints
   including discovery, authorization, token, userinfo, and JWKS.
-url: https://openid.net/developers/specs/
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-- OIDC
-- OpenID Connect
-- Authentication
-- Identity
-- OAuth
-- JWT
-created: '2025'
-modified: '2025'
+  - OIDC
+  - OpenID Connect
+  - Authentication
+  - Identity
+  - OAuth
+  - JWT
+url: https://raw.githubusercontent.com/api-evangelist/oidc/refs/heads/main/apis.yml
+created: '2025-01-01'
+modified: '2026-03-16'
+specificationVersion: '0.19'
 apis:
-- name: OpenID Connect API
-  description: >-
-    Core OpenID Connect API endpoints for authentication and identity,
-    including discovery, authorization, token exchange, user information
-    retrieval, key set publishing, and session management.
-  humanURL: https://openid.net/specs/openid-connect-core-1_0.html
-  properties:
-  - type: x-openapi
-    url: openapi/oidc.yml
-  - type: x-json-schema
-    url: json-schema/oidc-discovery.json
-  - type: x-json-schema
-    url: json-schema/oidc-id-token.json
-  - type: x-json-schema
-    url: json-schema/oidc-userinfo-response.json
-  - type: x-json-ld-context
-    url: json-ld/oidc-context.json
-common: []
+  - aid: oidc:openid-connect
+    name: OpenID Connect API
+    description: >-
+      Core OpenID Connect API endpoints for authentication and identity,
+      including discovery, authorization, token exchange, and user information.
+    humanURL: https://openid.net/specs/openid-connect-core-1_0.html
+    tags:
+      - OIDC
+      - Authentication
+      - Identity
+    properties:
+      - type: Documentation
+        url: https://openid.net/specs/openid-connect-core-1_0.html
+      - type: OpenAPI
+        url: openapi/oidc.yml
+common:
+  - type: Website
+    url: https://openid.net/
+  - type: Documentation
+    url: https://openid.net/developers/specs/
+  - type: Reference
+    url: https://openid.net/specs/openid-connect-core-1_0.html
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

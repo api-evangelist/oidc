@@ -9,12 +9,12 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - OIDC
-  - OpenID Connect
   - Authentication
   - Identity
-  - OAuth
   - JWT
+  - OAuth
+  - OIDC
+  - OpenID Connect
 url: https://raw.githubusercontent.com/api-evangelist/oidc/refs/heads/main/apis.yml
 created: '2025-01-01'
 modified: '2026-03-16'
@@ -27,9 +27,9 @@ apis:
       including discovery, authorization, token exchange, and user information.
     humanURL: https://openid.net/specs/openid-connect-core-1_0.html
     tags:
-      - OIDC
       - Authentication
       - Identity
+      - OIDC
     properties:
       - type: Documentation
         url: https://openid.net/specs/openid-connect-core-1_0.html

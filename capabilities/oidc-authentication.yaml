@@ -1,0 +1,149 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: OpenID Connect API — Authentication
+  description: 'OpenID Connect API — Authentication. 1 operations. Lead operation: Authorization Endpoint. Self-contained
+    Naftiko capability covering one Oidc business surface.'
+  tags:
+  - Oidc
+  - Authentication
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    OIDC_API_KEY: OIDC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: oidc-authentication
+    baseUri: https://{issuer}
+    description: OpenID Connect API — Authentication business capability. Self-contained, no shared references.
+    resources:
+    - name: authorize
+      path: /authorize
+      operations:
+      - name: authorize
+        method: GET
+        description: Authorization Endpoint
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: response_type
+          in: query
+          type: string
+          description: The value must include 'code' for the Authorization Code Flow, 'id_token' for the Implicit Flow, or
+            'code id_token' for the Hybrid Flow.
+          required: true
+        - name: client_id
+          in: query
+          type: string
+          description: The client identifier issued during registration.
+          required: true
+        - name: redirect_uri
+          in: query
+          type: string
+          description: The redirection URI to which the response will be sent. Must exactly match one of the redirection URIs
+            registered for the client.
+          required: true
+        - name: scope
+          in: query
+          type: string
+          description: Space-delimited list of scopes. Must include 'openid' to indicate an OIDC request. May also include
+            'profile', 'email', 'address', and 'phone'.
+          required: true
+        - name: state
+          in: query
+          type: string
+          description: An opaque value used by the client to maintain state between the request and callback. Recommended
+            for CSRF protection.
+        - name: nonce
+          in: query
+          type: string
+          description: A string value used to associate a client session with an ID Token and to mitigate replay attacks.
+            Required for implicit flow.
+        - name: prompt
+          in: query
+          type: string
+          description: Space-delimited list of values that specifies whether the authorization server prompts the end-user
+            for reauthentication and consent.
+        - name: login_hint
+          in: query
+          type: string
+          description: A hint to the authorization server about the login identifier the end-user might use.
+        - name: acr_values
+          in: query
+          type: string
+          description: Requested Authentication Context Class Reference values.
+        - name: code_challenge
+          in: query
+          type: string
+          description: PKCE code challenge derived from the code verifier.
+        - name: code_challenge_method
+          in: query
+          type: string
+          description: Code challenge method used to derive the code challenge.
+    authentication:
+      type: bearer
+      token: '{{env.OIDC_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: oidc-authentication-rest
+    port: 8080
+    description: REST adapter for OpenID Connect API — Authentication. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/authorize
+      name: authorize
+      description: REST surface for authorize.
+      operations:
+      - method: GET
+        name: authorize
+        description: Authorization Endpoint
+        call: oidc-authentication.authorize
+        with:
+          response_type: rest.response_type
+          client_id: rest.client_id
+          redirect_uri: rest.redirect_uri
+          scope: rest.scope
+          state: rest.state
+          nonce: rest.nonce
+          prompt: rest.prompt
+          login_hint: rest.login_hint
+          acr_values: rest.acr_values
+          code_challenge: rest.code_challenge
+          code_challenge_method: rest.code_challenge_method
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: oidc-authentication-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for OpenID Connect API — Authentication. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: authorization-endpoint
+      description: Authorization Endpoint
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oidc-authentication.authorize
+      with:
+        response_type: tools.response_type
+        client_id: tools.client_id
+        redirect_uri: tools.redirect_uri
+        scope: tools.scope
+        state: tools.state
+        nonce: tools.nonce
+        prompt: tools.prompt
+        login_hint: tools.login_hint
+        acr_values: tools.acr_values
+        code_challenge: tools.code_challenge
+        code_challenge_method: tools.code_challenge_method
+      outputParameters:
+      - type: object
+        mapping: $.

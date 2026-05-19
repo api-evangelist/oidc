@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: OpenID Connect API — JWKS
+  description: 'OpenID Connect API — JWKS. 1 operations. Lead operation: JSON Web Key Set Endpoint. Self-contained Naftiko
+    capability covering one Oidc business surface.'
+  tags:
+  - Oidc
+  - JWKS
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    OIDC_API_KEY: OIDC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: oidc-jwks
+    baseUri: https://{issuer}
+    description: OpenID Connect API — JWKS business capability. Self-contained, no shared references.
+    resources:
+    - name: .well-known-jwks.json
+      path: /.well-known/jwks.json
+      operations:
+      - name: getjwks
+        method: GET
+        description: JSON Web Key Set Endpoint
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.OIDC_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: oidc-jwks-rest
+    port: 8080
+    description: REST adapter for OpenID Connect API — JWKS. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/well-known/jwks-json
+      name: well-known-jwks-json
+      description: REST surface for .well-known-jwks.json.
+      operations:
+      - method: GET
+        name: getjwks
+        description: JSON Web Key Set Endpoint
+        call: oidc-jwks.getjwks
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: oidc-jwks-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for OpenID Connect API — JWKS. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: json-web-key-set-endpoint
+      description: JSON Web Key Set Endpoint
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oidc-jwks.getjwks
+      outputParameters:
+      - type: object
+        mapping: $.

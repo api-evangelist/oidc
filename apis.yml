@@ -6,7 +6,7 @@ description: >-
   profile information about users through RESTful endpoints including discovery, authorization, token, userinfo, and
   JWKS.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Authentication
   - Identity

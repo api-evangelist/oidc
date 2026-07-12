@@ -35,12 +35,18 @@ apis:
       - type: OpenAPI
         url: openapi/oidc.yml
 common:
+  - type: DomainSecurity
+    url: security/oidc-domain-security.yml
+  - type: Authentication
+    url: authentication/oidc-authentication.yml
   - type: Website
     url: https://openid.net/
   - type: Documentation
     url: https://openid.net/developers/specs/
   - type: Reference
     url: https://openid.net/specs/openid-connect-core-1_0.html
+  - type: Blog
+    url: https://openid.net/feed/
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

@@ -1,0 +1,21 @@
+{
+  "repo": "oidc",
+  "feeds": [
+    {
+      "source": "https://openid.net/feed/",
+      "feed_url": "https://openid.net/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
+      "source": "https://openid.net/specs/openid-connect-core-1_0.html",
+      "feed_url": "https://openid.net/specs/openid-connect-core-1_0.html",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    }
+  ],
+  "fetched": "2026-07-11T11:50:51Z",
+  "post_count": 35
+}

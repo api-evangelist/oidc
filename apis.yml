@@ -35,6 +35,8 @@ apis:
       - type: OpenAPI
         url: openapi/oidc.yml
 common:
+  - type: AgenticAccess
+    url: agentic-access/oidc-agentic-access.yml
   - type: DomainSecurity
     url: security/oidc-domain-security.yml
   - type: Authentication

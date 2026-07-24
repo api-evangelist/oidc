@@ -1,0 +1,68 @@
+openapi: 3.1.0
+info:
+  title: OpenID Connect Authentication UserInfo API
+  description: OpenID Connect (OIDC) is an identity layer built on top of the OAuth 2.0 protocol. It allows clients to verify the identity of end-users based on the authentication performed by an authorization server, and to obtain basic profile information about the end-user in an interoperable and REST-like manner. This specification covers the core OIDC endpoints including discovery, token, userinfo, and JWKS.
+  version: '1.0'
+  contact:
+    name: OpenID Foundation
+    url: https://openid.net/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://{issuer}
+  description: OpenID Connect Provider
+  variables:
+    issuer:
+      default: example.com
+      description: The OIDC issuer domain
+tags:
+- name: UserInfo
+  description: Endpoint for retrieving claims about the authenticated end-user.
+paths:
+  /userinfo:
+    get:
+      operationId: getUserInfo
+      summary: UserInfo Endpoint
+      description: Returns claims about the authenticated end-user. The caller must present a valid access token obtained through OIDC authentication. The claims returned depend on the scopes granted during authorization.
+      tags:
+      - UserInfo
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Claims about the authenticated end-user.
+          content:
+            application/json:
+              schema:
+                $ref: ../json-schema/oidc-userinfo-response.json
+        '401':
+          description: Missing or invalid access token.
+        '403':
+          description: Insufficient scope for the requested claims.
+    post:
+      operationId: postUserInfo
+      summary: UserInfo Endpoint (POST)
+      description: Returns claims about the authenticated end-user using a POST request. Functionally identical to the GET variant.
+      tags:
+      - UserInfo
+      security:
+      - bearerAuth: []
+      responses:
+        '200':
+          description: Claims about the authenticated end-user.
+          content:
+            application/json:
+              schema:
+                $ref: ../json-schema/oidc-userinfo-response.json
+        '401':
+          description: Missing or invalid access token.
+        '403':
+          description: Insufficient scope for the requested claims.
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer Token obtained through OIDC authentication.

@@ -1,0 +1,94 @@
+openapi: 3.1.0
+info:
+  title: OpenID Connect Authentication JWKS API
+  description: OpenID Connect (OIDC) is an identity layer built on top of the OAuth 2.0 protocol. It allows clients to verify the identity of end-users based on the authentication performed by an authorization server, and to obtain basic profile information about the end-user in an interoperable and REST-like manner. This specification covers the core OIDC endpoints including discovery, token, userinfo, and JWKS.
+  version: '1.0'
+  contact:
+    name: OpenID Foundation
+    url: https://openid.net/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://{issuer}
+  description: OpenID Connect Provider
+  variables:
+    issuer:
+      default: example.com
+      description: The OIDC issuer domain
+tags:
+- name: JWKS
+  description: JSON Web Key Set endpoint for token signature verification.
+paths:
+  /.well-known/jwks.json:
+    get:
+      operationId: getJwks
+      summary: JSON Web Key Set Endpoint
+      description: Returns the JSON Web Key Set (JWKS) containing the public keys used by the OpenID Provider to sign tokens. Clients use these keys to verify the signatures of ID tokens and other signed artifacts.
+      tags:
+      - JWKS
+      responses:
+        '200':
+          description: JSON Web Key Set containing the provider's public keys.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - keys
+                properties:
+                  keys:
+                    type: array
+                    description: Array of JSON Web Key objects.
+                    items:
+                      type: object
+                      required:
+                      - kty
+                      - use
+                      - kid
+                      properties:
+                        kty:
+                          type: string
+                          description: The key type (e.g., RSA, EC).
+                        use:
+                          type: string
+                          description: The intended use of the key (sig or enc).
+                          enum:
+                          - sig
+                          - enc
+                        kid:
+                          type: string
+                          description: A unique identifier for the key.
+                        alg:
+                          type: string
+                          description: The algorithm intended for use with the key.
+                        n:
+                          type: string
+                          description: The modulus value for an RSA public key (Base64urlUInt-encoded).
+                        e:
+                          type: string
+                          description: The exponent value for an RSA public key (Base64urlUInt-encoded).
+                        x:
+                          type: string
+                          description: The x coordinate for an EC public key.
+                        y:
+                          type: string
+                          description: The y coordinate for an EC public key.
+                        crv:
+                          type: string
+                          description: The curve for an EC key.
+                        x5c:
+                          type: array
+                          description: X.509 certificate chain.
+                          items:
+                            type: string
+                        x5t:
+                          type: string
+                          description: X.509 certificate SHA-1 thumbprint.
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer Token obtained through OIDC authentication.

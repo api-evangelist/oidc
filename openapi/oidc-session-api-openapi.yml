@@ -1,0 +1,59 @@
+openapi: 3.1.0
+info:
+  title: OpenID Connect Authentication Session API
+  description: OpenID Connect (OIDC) is an identity layer built on top of the OAuth 2.0 protocol. It allows clients to verify the identity of end-users based on the authentication performed by an authorization server, and to obtain basic profile information about the end-user in an interoperable and REST-like manner. This specification covers the core OIDC endpoints including discovery, token, userinfo, and JWKS.
+  version: '1.0'
+  contact:
+    name: OpenID Foundation
+    url: https://openid.net/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://{issuer}
+  description: OpenID Connect Provider
+  variables:
+    issuer:
+      default: example.com
+      description: The OIDC issuer domain
+tags:
+- name: Session
+  description: Session management endpoints including logout.
+paths:
+  /end-session:
+    get:
+      operationId: endSession
+      summary: End Session Endpoint
+      description: Initiates the logout process. The end-user is redirected to this endpoint to log out of the OpenID Provider. Supports RP-Initiated Logout as defined in the OIDC Session Management specification.
+      tags:
+      - Session
+      parameters:
+      - name: id_token_hint
+        in: query
+        required: false
+        description: The ID token previously issued to the client.
+        schema:
+          type: string
+      - name: post_logout_redirect_uri
+        in: query
+        required: false
+        description: The URI to redirect to after logout.
+        schema:
+          type: string
+          format: uri
+      - name: state
+        in: query
+        required: false
+        description: Opaque value for maintaining state between request and callback.
+        schema:
+          type: string
+      responses:
+        '302':
+          description: Redirect to the post-logout redirect URI or a default page.
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer Token obtained through OIDC authentication.

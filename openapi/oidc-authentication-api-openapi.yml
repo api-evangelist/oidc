@@ -1,0 +1,126 @@
+openapi: 3.1.0
+info:
+  title: OpenID Connect Authentication API
+  description: OpenID Connect (OIDC) is an identity layer built on top of the OAuth 2.0 protocol. It allows clients to verify the identity of end-users based on the authentication performed by an authorization server, and to obtain basic profile information about the end-user in an interoperable and REST-like manner. This specification covers the core OIDC endpoints including discovery, token, userinfo, and JWKS.
+  version: '1.0'
+  contact:
+    name: OpenID Foundation
+    url: https://openid.net/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://{issuer}
+  description: OpenID Connect Provider
+  variables:
+    issuer:
+      default: example.com
+      description: The OIDC issuer domain
+tags:
+- name: Authentication
+  description: Endpoints for authenticating end-users and obtaining authorization grants.
+paths:
+  /authorize:
+    get:
+      operationId: authorize
+      summary: Authorization Endpoint
+      description: Performs authentication of the end-user. The authorization endpoint is used to interact with the resource owner and obtain an authorization grant. The endpoint handles the authentication flow and redirects back to the client with an authorization code or tokens depending on the response type.
+      tags:
+      - Authentication
+      parameters:
+      - name: response_type
+        in: query
+        required: true
+        description: The value must include 'code' for the Authorization Code Flow, 'id_token' for the Implicit Flow, or 'code id_token' for the Hybrid Flow.
+        schema:
+          type: string
+          enum:
+          - code
+          - id_token
+          - id_token token
+          - code id_token
+          - code token
+          - code id_token token
+      - name: client_id
+        in: query
+        required: true
+        description: The client identifier issued during registration.
+        schema:
+          type: string
+      - name: redirect_uri
+        in: query
+        required: true
+        description: The redirection URI to which the response will be sent. Must exactly match one of the redirection URIs registered for the client.
+        schema:
+          type: string
+          format: uri
+      - name: scope
+        in: query
+        required: true
+        description: Space-delimited list of scopes. Must include 'openid' to indicate an OIDC request. May also include 'profile', 'email', 'address', and 'phone'.
+        schema:
+          type: string
+      - name: state
+        in: query
+        required: false
+        description: An opaque value used by the client to maintain state between the request and callback. Recommended for CSRF protection.
+        schema:
+          type: string
+      - name: nonce
+        in: query
+        required: false
+        description: A string value used to associate a client session with an ID Token and to mitigate replay attacks. Required for implicit flow.
+        schema:
+          type: string
+      - name: prompt
+        in: query
+        required: false
+        description: Space-delimited list of values that specifies whether the authorization server prompts the end-user for reauthentication and consent.
+        schema:
+          type: string
+          enum:
+          - none
+          - login
+          - consent
+          - select_account
+      - name: login_hint
+        in: query
+        required: false
+        description: A hint to the authorization server about the login identifier the end-user might use.
+        schema:
+          type: string
+      - name: acr_values
+        in: query
+        required: false
+        description: Requested Authentication Context Class Reference values.
+        schema:
+          type: string
+      - name: code_challenge
+        in: query
+        required: false
+        description: PKCE code challenge derived from the code verifier.
+        schema:
+          type: string
+      - name: code_challenge_method
+        in: query
+        required: false
+        description: Code challenge method used to derive the code challenge.
+        schema:
+          type: string
+          enum:
+          - plain
+          - S256
+      responses:
+        '302':
+          description: Redirect to the client redirect_uri with authorization code or tokens in the query string or fragment.
+        '400':
+          description: Invalid request parameters.
+        '401':
+          description: Authentication failed.
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer Token obtained through OIDC authentication.

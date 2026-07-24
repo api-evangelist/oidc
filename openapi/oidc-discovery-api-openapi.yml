@@ -1,0 +1,43 @@
+openapi: 3.1.0
+info:
+  title: OpenID Connect Authentication Discovery API
+  description: OpenID Connect (OIDC) is an identity layer built on top of the OAuth 2.0 protocol. It allows clients to verify the identity of end-users based on the authentication performed by an authorization server, and to obtain basic profile information about the end-user in an interoperable and REST-like manner. This specification covers the core OIDC endpoints including discovery, token, userinfo, and JWKS.
+  version: '1.0'
+  contact:
+    name: OpenID Foundation
+    url: https://openid.net/
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://{issuer}
+  description: OpenID Connect Provider
+  variables:
+    issuer:
+      default: example.com
+      description: The OIDC issuer domain
+tags:
+- name: Discovery
+  description: OpenID Connect Discovery endpoints for provider metadata.
+paths:
+  /.well-known/openid-configuration:
+    get:
+      operationId: getDiscovery
+      summary: OpenID Connect Discovery
+      description: Returns the OpenID Provider Configuration Information document, which contains metadata about the OpenID Provider including its issuer, supported endpoints, scopes, response types, and other capabilities.
+      tags:
+      - Discovery
+      responses:
+        '200':
+          description: OpenID Provider Configuration Information
+          content:
+            application/json:
+              schema:
+                $ref: ../json-schema/oidc-discovery.json
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 Bearer Token obtained through OIDC authentication.

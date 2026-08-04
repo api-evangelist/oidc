@@ -1,0 +1,24 @@
+{
+  "provider": "oidc",
+  "sources": [
+    "oidc-authentication-api-openapi.yml",
+    "oidc-discovery-api-openapi.yml",
+    "oidc-jwks-api-openapi.yml",
+    "oidc-session-api-openapi.yml",
+    "oidc-token-api-openapi.yml",
+    "oidc-userinfo-api-openapi.yml"
+  ],
+  "outputs": [
+    "oidc-authentication-api-openapi.yml",
+    "oidc-discovery-api-openapi.yml",
+    "oidc-jwks-api-openapi.yml",
+    "oidc-session-api-openapi.yml",
+    "oidc-token-api-openapi.yml",
+    "oidc-userinfo-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

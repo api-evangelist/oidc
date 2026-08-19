@@ -1,0 +1,127 @@
+{
+  "item": [
+    {
+      "id": "7fb1da96-ceb5-46e3-8fac-94d116738964",
+      "name": "JWKS",
+      "description": {
+        "content": "JSON Web Key Set endpoint for token signature verification.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7e361f41-df89-42a5-81f9-dd649100fdd5",
+          "name": "JSON Web Key Set Endpoint",
+          "request": {
+            "name": "JSON Web Key Set Endpoint",
+            "description": {
+              "content": "Returns the JSON Web Key Set (JWKS) containing the public keys used by the OpenID Provider to sign tokens. Clients use these keys to verify the signatures of ID tokens and other signed artifacts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ".well-known",
+                "jwks.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The OIDC issuer domain",
+                  "type": "any",
+                  "value": "{{issuer}}",
+                  "key": "issuer"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8f86af87-8d79-409e-8d7b-c7b8c9816a3e",
+              "name": "JSON Web Key Set containing the provider's public keys.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ".well-known",
+                    "jwks.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The OIDC issuer domain",
+                      "type": "any",
+                      "value": "{{issuer}}",
+                      "key": "issuer"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"keys\": [\n    {\n      \"kty\": \"string\",\n      \"use\": \"sig\",\n      \"kid\": \"string\",\n      \"alg\": \"string\",\n      \"n\": \"string\",\n      \"e\": \"string\",\n      \"x\": \"string\",\n      \"y\": \"string\",\n      \"crv\": \"string\",\n      \"x5c\": [\n        \"string\",\n        \"string\"\n      ],\n      \"x5t\": \"string\"\n    },\n    {\n      \"kty\": \"string\",\n      \"use\": \"sig\",\n      \"kid\": \"string\",\n      \"alg\": \"string\",\n      \"n\": \"string\",\n      \"e\": \"string\",\n      \"x\": \"string\",\n      \"y\": \"string\",\n      \"crv\": \"string\",\n      \"x5c\": [\n        \"string\",\n        \"string\"\n      ],\n      \"x5t\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The OIDC issuer domain",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "example.com",
+      "key": "issuer"
+    },
+    {
+      "type": "string",
+      "value": "https://{{issuer}}",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e2c8093c-a594-4f8b-bd92-54c09b1bfca2",
+    "name": "OpenID Connect Authentication JWKS API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenID Connect (OIDC) is an identity layer built on top of the OAuth 2.0 protocol. It allows clients to verify the identity of end-users based on the authentication performed by an authorization server, and to obtain basic profile information about the end-user in an interoperable and REST-like manner. This specification covers the core OIDC endpoints including discovery, token, userinfo, and JWKS.\n\nContact Support:\n Name: OpenID Foundation",
+      "type": "text/plain"
+    }
+  }
+}

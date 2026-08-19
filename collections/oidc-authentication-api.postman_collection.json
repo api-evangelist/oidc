@@ -1,0 +1,387 @@
+{
+  "item": [
+    {
+      "id": "4fc27e8d-443e-4c12-97bd-82dfdf4bf029",
+      "name": "Authentication",
+      "description": {
+        "content": "Endpoints for authenticating end-users and obtaining authorization grants.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "507b4417-5d90-4ccf-9120-8f95d641b34a",
+          "name": "Authorization Endpoint",
+          "request": {
+            "name": "Authorization Endpoint",
+            "description": {
+              "content": "Performs authentication of the end-user. The authorization endpoint is used to interact with the resource owner and obtain an authorization grant. The endpoint handles the authentication flow and redirects back to the client with an authorization code or tokens depending on the response type.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "authorize"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "response_type",
+                  "value": "<string>",
+                  "description": "(Required) The value must include 'code' for the Authorization Code Flow, 'id_token' for the Implicit Flow, or 'code id_token' for the Hybrid Flow."
+                },
+                {
+                  "disabled": false,
+                  "key": "client_id",
+                  "value": "<string>",
+                  "description": "(Required) The client identifier issued during registration."
+                },
+                {
+                  "disabled": false,
+                  "key": "redirect_uri",
+                  "value": "<uri>",
+                  "description": "(Required) The redirection URI to which the response will be sent. Must exactly match one of the redirection URIs registered for the client."
+                },
+                {
+                  "disabled": false,
+                  "key": "scope",
+                  "value": "<string>",
+                  "description": "(Required) Space-delimited list of scopes. Must include 'openid' to indicate an OIDC request. May also include 'profile', 'email', 'address', and 'phone'."
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "An opaque value used by the client to maintain state between the request and callback. Recommended for CSRF protection."
+                },
+                {
+                  "disabled": false,
+                  "key": "nonce",
+                  "value": "<string>",
+                  "description": "A string value used to associate a client session with an ID Token and to mitigate replay attacks. Required for implicit flow."
+                },
+                {
+                  "disabled": false,
+                  "key": "prompt",
+                  "value": "<string>",
+                  "description": "Space-delimited list of values that specifies whether the authorization server prompts the end-user for reauthentication and consent."
+                },
+                {
+                  "disabled": false,
+                  "key": "login_hint",
+                  "value": "<string>",
+                  "description": "A hint to the authorization server about the login identifier the end-user might use."
+                },
+                {
+                  "disabled": false,
+                  "key": "acr_values",
+                  "value": "<string>",
+                  "description": "Requested Authentication Context Class Reference values."
+                },
+                {
+                  "disabled": false,
+                  "key": "code_challenge",
+                  "value": "<string>",
+                  "description": "PKCE code challenge derived from the code verifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "code_challenge_method",
+                  "value": "<string>",
+                  "description": "Code challenge method used to derive the code challenge."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The OIDC issuer domain",
+                  "type": "any",
+                  "value": "{{issuer}}",
+                  "key": "issuer"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1cd34b66-1e5d-4f4b-87d7-8b79ff1c7fc0",
+              "name": "Redirect to the client redirect_uri with authorization code or tokens in the query string or fragment.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "authorize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "response_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "redirect_uri",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "scope",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nonce",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "login_hint",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "acr_values",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "code_challenge",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "code_challenge_method",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The OIDC issuer domain",
+                      "type": "any",
+                      "value": "{{issuer}}",
+                      "key": "issuer"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Found",
+              "code": 302,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6da500d5-6a78-4f7f-b596-545e5caf2cb4",
+              "name": "Invalid request parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "authorize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "response_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "redirect_uri",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "scope",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nonce",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "login_hint",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "acr_values",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "code_challenge",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "code_challenge_method",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The OIDC issuer domain",
+                      "type": "any",
+                      "value": "{{issuer}}",
+                      "key": "issuer"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9027b0ef-4346-4ee5-8daf-ea016d8ca7c3",
+              "name": "Authentication failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "authorize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "response_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "redirect_uri",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "scope",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nonce",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "login_hint",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "acr_values",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "code_challenge",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "code_challenge_method",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The OIDC issuer domain",
+                      "type": "any",
+                      "value": "{{issuer}}",
+                      "key": "issuer"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The OIDC issuer domain",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "example.com",
+      "key": "issuer"
+    },
+    {
+      "type": "string",
+      "value": "https://{{issuer}}",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "3bffc4c6-3551-4d92-944e-29f9c7620c6b",
+    "name": "OpenID Connect Authentication API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenID Connect (OIDC) is an identity layer built on top of the OAuth 2.0 protocol. It allows clients to verify the identity of end-users based on the authentication performed by an authorization server, and to obtain basic profile information about the end-user in an interoperable and REST-like manner. This specification covers the core OIDC endpoints including discovery, token, userinfo, and JWKS.\n\nContact Support:\n Name: OpenID Foundation",
+      "type": "text/plain"
+    }
+  }
+}

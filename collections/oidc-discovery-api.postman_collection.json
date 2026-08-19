@@ -1,0 +1,127 @@
+{
+  "item": [
+    {
+      "id": "61377585-ea81-491c-bb86-b9d957d359c9",
+      "name": "Discovery",
+      "description": {
+        "content": "OpenID Connect Discovery endpoints for provider metadata.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "461075ad-be24-436a-95c7-98865dc581b0",
+          "name": "OpenID Connect Discovery",
+          "request": {
+            "name": "OpenID Connect Discovery",
+            "description": {
+              "content": "Returns the OpenID Provider Configuration Information document, which contains metadata about the OpenID Provider including its issuer, supported endpoints, scopes, response types, and other capabilities.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ".well-known",
+                "openid-configuration"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The OIDC issuer domain",
+                  "type": "any",
+                  "value": "{{issuer}}",
+                  "key": "issuer"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b1efa6d1-21d5-4a3d-aed5-6b18ff884bae",
+              "name": "OpenID Provider Configuration Information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ".well-known",
+                    "openid-configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The OIDC issuer domain",
+                      "type": "any",
+                      "value": "{{issuer}}",
+                      "key": "issuer"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The OIDC issuer domain",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "example.com",
+      "key": "issuer"
+    },
+    {
+      "type": "string",
+      "value": "https://{{issuer}}",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5a5e4ea1-c31b-4ab3-872f-5f076275574c",
+    "name": "OpenID Connect Authentication Discovery API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenID Connect (OIDC) is an identity layer built on top of the OAuth 2.0 protocol. It allows clients to verify the identity of end-users based on the authentication performed by an authorization server, and to obtain basic profile information about the end-user in an interoperable and REST-like manner. This specification covers the core OIDC endpoints including discovery, token, userinfo, and JWKS.\n\nContact Support:\n Name: OpenID Foundation",
+      "type": "text/plain"
+    }
+  }
+}

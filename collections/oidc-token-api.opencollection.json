@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpenID Connect Authentication Token API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Token",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Token Endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{issuer}/token",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "grant_type",
+                  "value": ""
+                },
+                {
+                  "name": "code",
+                  "value": ""
+                },
+                {
+                  "name": "redirect_uri",
+                  "value": ""
+                },
+                {
+                  "name": "client_id",
+                  "value": ""
+                },
+                {
+                  "name": "client_secret",
+                  "value": ""
+                },
+                {
+                  "name": "refresh_token",
+                  "value": ""
+                },
+                {
+                  "name": "scope",
+                  "value": ""
+                },
+                {
+                  "name": "code_verifier",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Exchanges an authorization code, refresh token, or client credentials for an access token and optionally a refresh token and ID token. The token endpoint is used by the client to obtain tokens after receiving an authorization code from the authorization endpoint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

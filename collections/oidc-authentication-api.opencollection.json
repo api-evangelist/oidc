@@ -1,0 +1,97 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpenID Connect Authentication API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Authorization Endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{issuer}/authorize",
+            "params": [
+              {
+                "name": "response_type",
+                "value": "",
+                "type": "query",
+                "description": "The value must include 'code' for the Authorization Code Flow, 'id_token' for the Implicit Flow, or 'code id_token' for the Hybrid Flow."
+              },
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query",
+                "description": "The client identifier issued during registration."
+              },
+              {
+                "name": "redirect_uri",
+                "value": "",
+                "type": "query",
+                "description": "The redirection URI to which the response will be sent. Must exactly match one of the redirection URIs registered for the client."
+              },
+              {
+                "name": "scope",
+                "value": "",
+                "type": "query",
+                "description": "Space-delimited list of scopes. Must include 'openid' to indicate an OIDC request. May also include 'profile', 'email', 'address', and 'phone'."
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "An opaque value used by the client to maintain state between the request and callback. Recommended for CSRF protection."
+              },
+              {
+                "name": "nonce",
+                "value": "",
+                "type": "query",
+                "description": "A string value used to associate a client session with an ID Token and to mitigate replay attacks. Required for implicit flow."
+              },
+              {
+                "name": "prompt",
+                "value": "",
+                "type": "query",
+                "description": "Space-delimited list of values that specifies whether the authorization server prompts the end-user for reauthentication and consent."
+              },
+              {
+                "name": "login_hint",
+                "value": "",
+                "type": "query",
+                "description": "A hint to the authorization server about the login identifier the end-user might use."
+              },
+              {
+                "name": "acr_values",
+                "value": "",
+                "type": "query",
+                "description": "Requested Authentication Context Class Reference values."
+              },
+              {
+                "name": "code_challenge",
+                "value": "",
+                "type": "query",
+                "description": "PKCE code challenge derived from the code verifier."
+              },
+              {
+                "name": "code_challenge_method",
+                "value": "",
+                "type": "query",
+                "description": "Code challenge method used to derive the code challenge."
+              }
+            ]
+          },
+          "docs": "Performs authentication of the end-user. The authorization endpoint is used to interact with the resource owner and obtain an authorization grant. The endpoint handles the authentication flow and redirects back to the client with an authorization code or tokens depending on the response type."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

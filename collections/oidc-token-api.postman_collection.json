@@ -1,0 +1,376 @@
+{
+  "item": [
+    {
+      "id": "c4e864f6-ca7d-41a4-af00-50c0cd99e663",
+      "name": "Token",
+      "description": {
+        "content": "Token endpoint for exchanging authorization codes for tokens.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5248ca00-d0cf-427a-a049-db683316afb1",
+          "name": "Token Endpoint",
+          "request": {
+            "name": "Token Endpoint",
+            "description": {
+              "content": "Exchanges an authorization code, refresh token, or client credentials for an access token and optionally a refresh token and ID token. The token endpoint is used by the client to obtain tokens after receiving an authorization code from the authorization endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The OIDC issuer domain",
+                  "type": "any",
+                  "value": "{{issuer}}",
+                  "key": "issuer"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "grant_type",
+                  "value": "<string>",
+                  "description": "(Required) The type of grant being presented."
+                },
+                {
+                  "disabled": false,
+                  "key": "code",
+                  "value": "<string>",
+                  "description": "The authorization code received from the authorization endpoint."
+                },
+                {
+                  "disabled": false,
+                  "key": "redirect_uri",
+                  "value": "<uri>",
+                  "description": "The redirect URI used in the authorization request."
+                },
+                {
+                  "disabled": false,
+                  "key": "client_id",
+                  "value": "<string>",
+                  "description": "The client identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "client_secret",
+                  "value": "<string>",
+                  "description": "The client secret."
+                },
+                {
+                  "disabled": false,
+                  "key": "refresh_token",
+                  "value": "<string>",
+                  "description": "The refresh token for obtaining a new access token."
+                },
+                {
+                  "disabled": false,
+                  "key": "scope",
+                  "value": "<string>",
+                  "description": "The requested scope."
+                },
+                {
+                  "disabled": false,
+                  "key": "code_verifier",
+                  "value": "<string>",
+                  "description": "PKCE code verifier that was used to generate the code challenge."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1d91a1e9-1c25-46f0-9f17-3ece7a75a1f9",
+              "name": "Successful token response containing access token and optionally ID token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The OIDC issuer domain",
+                      "type": "any",
+                      "value": "{{issuer}}",
+                      "key": "issuer"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The type of grant being presented.",
+                        "type": "text/plain"
+                      },
+                      "key": "grant_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The authorization code received from the authorization endpoint.",
+                        "type": "text/plain"
+                      },
+                      "key": "code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The redirect URI used in the authorization request.",
+                        "type": "text/plain"
+                      },
+                      "key": "redirect_uri",
+                      "value": "<uri>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The client identifier.",
+                        "type": "text/plain"
+                      },
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The client secret.",
+                        "type": "text/plain"
+                      },
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The refresh token for obtaining a new access token.",
+                        "type": "text/plain"
+                      },
+                      "key": "refresh_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The requested scope.",
+                        "type": "text/plain"
+                      },
+                      "key": "scope",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "PKCE code verifier that was used to generate the code challenge.",
+                        "type": "text/plain"
+                      },
+                      "key": "code_verifier",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_token\": \"string\",\n  \"token_type\": \"Bearer\",\n  \"expires_in\": 5879,\n  \"refresh_token\": \"string\",\n  \"id_token\": \"string\",\n  \"scope\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dca2e53f-f424-48ff-8a99-c143a8a6d172",
+              "name": "Invalid request, such as an invalid grant or unauthorized client.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The OIDC issuer domain",
+                      "type": "any",
+                      "value": "{{issuer}}",
+                      "key": "issuer"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The type of grant being presented.",
+                        "type": "text/plain"
+                      },
+                      "key": "grant_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The authorization code received from the authorization endpoint.",
+                        "type": "text/plain"
+                      },
+                      "key": "code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The redirect URI used in the authorization request.",
+                        "type": "text/plain"
+                      },
+                      "key": "redirect_uri",
+                      "value": "<uri>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The client identifier.",
+                        "type": "text/plain"
+                      },
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The client secret.",
+                        "type": "text/plain"
+                      },
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The refresh token for obtaining a new access token.",
+                        "type": "text/plain"
+                      },
+                      "key": "refresh_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The requested scope.",
+                        "type": "text/plain"
+                      },
+                      "key": "scope",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "PKCE code verifier that was used to generate the code challenge.",
+                        "type": "text/plain"
+                      },
+                      "key": "code_verifier",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unauthorized_client\",\n  \"error_description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The OIDC issuer domain",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "example.com",
+      "key": "issuer"
+    },
+    {
+      "type": "string",
+      "value": "https://{{issuer}}",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "2714f88c-1a1b-4ebf-aba8-4f44603c2883",
+    "name": "OpenID Connect Authentication Token API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenID Connect (OIDC) is an identity layer built on top of the OAuth 2.0 protocol. It allows clients to verify the identity of end-users based on the authentication performed by an authorization server, and to obtain basic profile information about the end-user in an interoperable and REST-like manner. This specification covers the core OIDC endpoints including discovery, token, userinfo, and JWKS.\n\nContact Support:\n Name: OpenID Foundation",
+      "type": "text/plain"
+    }
+  }
+}

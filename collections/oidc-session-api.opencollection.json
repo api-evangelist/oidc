@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpenID Connect Authentication Session API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Session",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "End Session Endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{issuer}/end-session",
+            "params": [
+              {
+                "name": "id_token_hint",
+                "value": "",
+                "type": "query",
+                "description": "The ID token previously issued to the client."
+              },
+              {
+                "name": "post_logout_redirect_uri",
+                "value": "",
+                "type": "query",
+                "description": "The URI to redirect to after logout."
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Opaque value for maintaining state between request and callback."
+              }
+            ]
+          },
+          "docs": "Initiates the logout process. The end-user is redirected to this endpoint to log out of the OpenID Provider. Supports RP-Initiated Logout as defined in the OIDC Session Management specification."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

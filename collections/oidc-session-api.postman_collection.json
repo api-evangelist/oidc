@@ -1,0 +1,145 @@
+{
+  "item": [
+    {
+      "id": "bc8aece6-4d6f-4d62-9630-5a6efc418b21",
+      "name": "Session",
+      "description": {
+        "content": "Session management endpoints including logout.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "600df718-7cdc-4c5d-ac97-094694cf5092",
+          "name": "End Session Endpoint",
+          "request": {
+            "name": "End Session Endpoint",
+            "description": {
+              "content": "Initiates the logout process. The end-user is redirected to this endpoint to log out of the OpenID Provider. Supports RP-Initiated Logout as defined in the OIDC Session Management specification.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "end-session"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id_token_hint",
+                  "value": "<string>",
+                  "description": "The ID token previously issued to the client."
+                },
+                {
+                  "disabled": false,
+                  "key": "post_logout_redirect_uri",
+                  "value": "<uri>",
+                  "description": "The URI to redirect to after logout."
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Opaque value for maintaining state between request and callback."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The OIDC issuer domain",
+                  "type": "any",
+                  "value": "{{issuer}}",
+                  "key": "issuer"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b8c3e46b-d947-4b89-ae70-e3465de9ecc0",
+              "name": "Redirect to the post-logout redirect URI or a default page.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "end-session"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id_token_hint",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "post_logout_redirect_uri",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The OIDC issuer domain",
+                      "type": "any",
+                      "value": "{{issuer}}",
+                      "key": "issuer"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Found",
+              "code": 302,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The OIDC issuer domain",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "example.com",
+      "key": "issuer"
+    },
+    {
+      "type": "string",
+      "value": "https://{{issuer}}",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f8d0b7eb-0191-4c12-b033-42b54fe827c9",
+    "name": "OpenID Connect Authentication Session API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenID Connect (OIDC) is an identity layer built on top of the OAuth 2.0 protocol. It allows clients to verify the identity of end-users based on the authentication performed by an authorization server, and to obtain basic profile information about the end-user in an interoperable and REST-like manner. This specification covers the core OIDC endpoints including discovery, token, userinfo, and JWKS.\n\nContact Support:\n Name: OpenID Foundation",
+      "type": "text/plain"
+    }
+  }
+}

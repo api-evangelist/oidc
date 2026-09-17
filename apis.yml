@@ -105,15 +105,15 @@ apis:
     url: openapi/oidc-token-api-openapi.yml
   - type: Documentation
     url: https://openid.net/specs/openid-connect-core-1_0.html
-- aid: oidc:oidc-userinfo-api
-  name: OIDC UserInfo API
+- aid: oidc:oidc-user-info-api
+  name: OIDC User Info API
   description: Endpoint for retrieving claims about the authenticated end-user.
   humanURL: https://openid.net/specs/openid-connect-core-1_0.html
   tags:
-  - UserInfo
+  - User Info
   properties:
   - type: OpenAPI
-    url: openapi/oidc-userinfo-api-openapi.yml
+    url: openapi/oidc-user-info-api-openapi.yml
   - type: Documentation
     url: https://openid.net/specs/openid-connect-core-1_0.html
 common:

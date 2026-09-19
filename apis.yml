@@ -88,6 +88,8 @@ apis:
   description: Session management endpoints including logout.
   humanURL: https://openid.net/specs/openid-connect-core-1_0.html
   tags:
+  - Sessions
+  tags_raw:
   - Session
   properties:
   - type: OpenAPI
@@ -99,6 +101,8 @@ apis:
   description: Token endpoint for exchanging authorization codes for tokens.
   humanURL: https://openid.net/specs/openid-connect-core-1_0.html
   tags:
+  - Tokens
+  tags_raw:
   - Token
   properties:
   - type: OpenAPI
@@ -110,6 +114,8 @@ apis:
   description: Endpoint for retrieving claims about the authenticated end-user.
   humanURL: https://openid.net/specs/openid-connect-core-1_0.html
   tags:
+  - UserInfo
+  tags_raw:
   - User Info
   properties:
   - type: OpenAPI

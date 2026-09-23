@@ -1,12 +1,7 @@
 {
   "provider": "oidc",
   "sources": [
-    "oidc-authentication-api-openapi.yml",
-    "oidc-discovery-api-openapi.yml",
-    "oidc-jwks-api-openapi.yml",
-    "oidc-session-api-openapi.yml",
-    "oidc-token-api-openapi.yml",
-    "oidc-userinfo-api-openapi.yml"
+    "_original/oidc.yml"
   ],
   "outputs": [
     "oidc-authentication-api-openapi.yml",
@@ -16,9 +11,23 @@
     "oidc-token-api-openapi.yml",
     "oidc-userinfo-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "oidc.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "superseded outputs removed: oidc-user-info-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 6 total)"
+  ],
+  "skipped": [
+    "oidc-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "oidc-discovery-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "oidc-jwks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "oidc-session-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "oidc-token-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "oidc-user-info-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

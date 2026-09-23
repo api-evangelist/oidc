@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: OpenID Connect Authentication UserInfo API
+  title: OpenID Connect User Info API
   description: OpenID Connect (OIDC) is an identity layer built on top of the OAuth 2.0 protocol. It allows clients to verify the identity of end-users based on the authentication performed by an authorization server, and to obtain basic profile information about the end-user in an interoperable and REST-like manner. This specification covers the core OIDC endpoints including discovery, token, userinfo, and JWKS.
   version: '1.0'
   contact:
@@ -17,7 +17,7 @@ servers:
       default: example.com
       description: The OIDC issuer domain
 tags:
-- name: UserInfo
+- name: User Info
   description: Endpoint for retrieving claims about the authenticated end-user.
 paths:
   /userinfo:
@@ -26,7 +26,7 @@ paths:
       summary: UserInfo Endpoint
       description: Returns claims about the authenticated end-user. The caller must present a valid access token obtained through OIDC authentication. The claims returned depend on the scopes granted during authorization.
       tags:
-      - UserInfo
+      - User Info
       security:
       - bearerAuth: []
       responses:
@@ -45,7 +45,7 @@ paths:
       summary: UserInfo Endpoint (POST)
       description: Returns claims about the authenticated end-user using a POST request. Functionally identical to the GET variant.
       tags:
-      - UserInfo
+      - User Info
       security:
       - bearerAuth: []
       responses:

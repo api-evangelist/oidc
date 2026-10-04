@@ -114,8 +114,6 @@ apis:
   description: Endpoint for retrieving claims about the authenticated end-user.
   humanURL: https://openid.net/specs/openid-connect-core-1_0.html
   tags:
-  - UserInfo
-  tags_raw:
   - User Info
   properties:
   - type: OpenAPI

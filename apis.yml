@@ -114,6 +114,8 @@ apis:
   description: Endpoint for retrieving claims about the authenticated end-user.
   humanURL: https://openid.net/specs/openid-connect-core-1_0.html
   tags:
+  - UserInfo
+  tags_raw:
   - User Info
   properties:
   - type: OpenAPI
@@ -121,6 +123,9 @@ apis:
   - type: Documentation
     url: https://openid.net/specs/openid-connect-core-1_0.html
 common:
+  - type: CapabilityMap
+    url: capabilities/oidc-capability-edges.yml
+    name: OIDC Business Capability Map
   - type: AgenticAccess
     url: agentic-access/oidc-agentic-access.yml
   - type: DomainSecurity

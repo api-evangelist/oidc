@@ -1,0 +1,55 @@
+slug: oidc
+provider: OIDC
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 4
+edges:
+- tag: Authentication
+  spec_file: oidc-authentication-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.88
+  evidence: GET /authorize  authorize  Authorization Endpoint; "allows clients to verify the identity
+    of end-users based on the authentication performed by an authorization server"
+  reason: The authorization endpoint performs end-user authentication and consent as part of a federated
+    identity protocol, which is squarely Identity & Access Management (federation/SSO).
+- tag: User Info
+  spec_file: oidc-user-info-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: GET /userinfo  getUserInfo  UserInfo Endpoint; "obtain basic profile information about the
+    end-user"
+  reason: Returns authenticated end-user identity claims to a relying party. This is identity attribute
+    release within IAM, not customer master data management.
+- tag: JWKS
+  spec_file: oidc-jwks-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.72
+  evidence: GET /.well-known/jwks.json  getJwks  JSON Web Key Set Endpoint
+  reason: Publishes the signing keys used to validate identity tokens — a cryptographic/key-distribution
+    function in service of federated authentication. Mapped to IAM with moderate confidence since it is
+    infrastructure-level.
+- tag: Discovery
+  spec_file: oidc-discovery-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: GET /.well-known/openid-configuration  getDiscovery  OpenID Connect Discovery
+  reason: Provider metadata discovery is a configuration endpoint, but it exists solely to enable identity
+    federation between relying parties and the OIDC provider, so IAM is the honest home; confidence moderated
+    because the operation itself is metadata plumbing.
